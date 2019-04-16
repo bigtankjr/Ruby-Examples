@@ -1,0 +1,37 @@
+movies = {blackpanther: 5,
+  Memento: 4,
+  Alita: 4,
+  Django: 5}
+puts "Enter your choice"
+choice = gets.chomp
+case choice
+  when "add"
+  puts "Enter a movie title"
+  title = gets.chomp
+  puts "What is the movie rating?"
+  rating = gets.chomp
+  if movies[title.to_sym] == nil
+  	movies[title.to_sym] = rating.to_i
+  	puts "The movie #{title} was added with a rating of 			#{rating}."
+  else
+    puts "The movie already exists"
+  end
+  when "update"
+  puts "Enter the movie title"
+  title = gets.chomp
+  if movies[title.to_sym] == nil
+    puts "The movie is not in the hash"
+  else
+    puts "Enter the new rating for the movie"
+    rating = gets.chomp
+    movies[title.to_sym] = rating
+  end
+  when "display"
+  movies.each{|movie,rating| puts "#{movie}: #{rating}"}
+  when "delete"
+  puts "Enter the movie you'd like to delete"
+  title = gets.chomp
+  puts movies[title.to_sym] != nil ? movies.delete(title.to_sym):"movie doesn't exist."
+	else
+  puts "Error!"
+end
